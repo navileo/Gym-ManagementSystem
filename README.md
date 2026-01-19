@@ -1,6 +1,8 @@
 # Gym Management System
 
 Modernize your fitness center with a scalable, secure, and user-friendly digital platform. This system eliminates paper-based receipts, automates member notifications, and provides centralized management for gym owners.
+## Live Demo
+https://navileo.github.io/Gym-ManagementSystem/
 
 ## 🚀 Technologies
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
