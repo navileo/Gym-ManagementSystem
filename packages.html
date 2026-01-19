@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages - About Fitness</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">About Fitness</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" id="nav-links">
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="facilities.html">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-success text-white ms-lg-2" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-success text-white ms-lg-2" href="login.html">Admin Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h2 class="text-center mb-5">Our Membership Packages</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Basic</h3>
+                        <h4 class="text-primary">Rs 1000 / month</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li>Gym Access</li>
+                            <li>Locker Room</li>
+                            <li>Standard Equipment</li>
+                        </ul>
+                        <a href="register.html" class="btn btn-primary mt-3 package-btn" data-plan="Basic">Join Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100 border-primary">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Standard</h3>
+                        <h4 class="text-primary">Rs 2500 / month</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li>Full Gym Access</li>
+                            <li>Yoga Classes</li>
+                            <li>Personal Trainer (2 sessions)</li>
+                        </ul>
+                        <a href="register.html" class="btn btn-primary mt-3 package-btn" data-plan="Standard">Join Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Premium</h3>
+                        <h4 class="text-primary">Rs 5000 / month</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li>24/7 Access</li>
+                            <li>Personal Trainer</li>
+                            <li>Diet Consultation</li>
+                            <li>Spa Access</li>
+                        </ul>
+                        <a href="register.html" class="btn btn-primary mt-3 package-btn" data-plan="Premium">Join Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const packageBtns = document.querySelectorAll('.package-btn');
+
+            auth.onAuthStateChanged(user => {
+                packageBtns.forEach(btn => {
+                    if (user) {
+                        // User is logged in
+                        btn.textContent = 'Select Plan';
+                        btn.href = '#';
+                        btn.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const plan = btn.getAttribute('data-plan');
+                            selectPlan(user.uid, plan);
+                        });
+                    } else {
+                        // User is not logged in
+                        btn.textContent = 'Join Now';
+                        btn.href = 'register.html';
+                    }
+                });
+            });
+
+            function selectPlan(uid, plan) {
+                let amount = 0;
+                if (plan === 'Basic') amount = 1000;
+                if (plan === 'Standard') amount = 2500;
+                if (plan === 'Premium') amount = 5000;
+
+                // 1. Update user profile with plan info
+                const userUpdate = db.collection('users').doc(uid).update({
+                    membershipPlan: plan,
+                    planStatus: 'active',
+                    planDate: firebase.firestore.FieldValue.serverTimestamp()
+                });
+
+                // 2. Create a receipt for the payment
+                const receiptCreate = db.collection('receipts').add({
+                    memberId: uid,
+                    amount: amount,
+                    status: 'Paid',
+                    date: firebase.firestore.FieldValue.serverTimestamp(),
+                    planName: plan
+                });
+
+                Promise.all([userUpdate, receiptCreate]).then(() => {
+                    alert(`Successfully subscribed to the ${plan} plan! Your receipt has been generated.`);
+                    window.location.href = 'profile.html';
+                }).catch(err => {
+                    console.error("Error updating plan/receipt:", err);
+                    alert("Error processing subscription: " + err.message);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

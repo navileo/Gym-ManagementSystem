@@ -1,0 +1,54 @@
+body {
+    padding-top: 56px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-section {
+    height: 70vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.card {
+    transition: transform 0.3s;
+    border: none;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.facility-card-img {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.facility-card {
+    height: 100%;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar {
+    z-index: 1050; /* Ensure navbar is always on top */
+}
+
+#nav-links {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#nav-links.ready {
+    visibility: visible;
+    opacity: 1;
+}
+
+footer {
+    margin-top: 50px;
+}

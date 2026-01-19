@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilities - About Fitness</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">About Fitness</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto" id="nav-links">
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="facilities.html">Facilities</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-success text-white ms-lg-2" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-success text-white ms-lg-2" href="login.html">Admin Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <h2 class="text-center mb-5">Our World-Class Facilities</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow h-100">
+                    <img src="https://img.freepik.com/premium-photo/cardio-zone-with-treadmills-fitness-club-other-exercise-equipment-background_484651-22315.jpg" class="card-img-top facility-card-img" alt="Cardio">
+                    <div class="card-body">
+                        <h3>Cardio Zone</h3>
+                        <p>Advanced treadmills, ellipticals, and cycles.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow h-100">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.Swr2m0zW61tMBiw_yCE3XQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top facility-card-img" alt="Strength">
+                    <div class="card-body">
+                        <h3>Strength Training</h3>
+                        <p>Free weights, power racks, and specialized machines.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <img src="https://nordic.co.uk/wp-content/uploads/2019/08/bradshott_1-1024x512.jpg" class="card-img-top facility-card-img" alt="Spa">
+                    <div class="card-body">
+                        <h3>Steam & Spa</h3>
+                        <p>Relax after your workout in our premium spa.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <img src="https://images.squarespace-cdn.com/content/v1/58e3f0439f7456907eab34e4/1693425775262-3T5F8QUWJBE95EUT824T/CHOICE-Locker-INTERIORS-8.jpg" class="card-img-top facility-card-img" alt="Locker">
+                    <div class="card-body">
+                        <h3>Modern Lockers</h3>
+                        <p>Secure and clean spaces for your belongings.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow h-100">
+                    <img src="https://www.localfitness.com.au/images/centres/main/141/141_29650_coburg-leisure-centre-coburg-gym-aerobics-popular-classes-like-coburg-yoga-zumba-and-pilates-run_xl.jpg" class="card-img-top facility-card-img" alt="Aerobics">
+                    <div class="card-body">
+                        <h3>Aerobics Studio</h3>
+                        <p>Spacious room for group classes and yoga.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
