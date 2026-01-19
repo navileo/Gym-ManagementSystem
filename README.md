@@ -44,7 +44,7 @@ Modernize your fitness center with a scalable, secure, and user-friendly digital
 
 ## 🔐 Default Admin Credentials
 - **Email**: `admin@gmail.com`
-- **Password**: `admin@gmail.com`
+- **Password**: `admin@123`
 
 ## 🔒 Security & Optimization
 - **Role-Based Access**: Strict separation between Admin and Member views.
